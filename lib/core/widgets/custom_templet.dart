@@ -33,7 +33,7 @@ class CustomItem extends StatelessWidget {
                   //     offset:const Offset(0, 2),),
                   // ],
                   borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: AppTheme.primary.withOpacity(.1),width: 1.2),
+                  border: Border.all(color: AppTheme.kPrimary.withOpacity(.1),width: 1.2),
                   color: AppTheme.background
                 //AppTheme.white,
               ),
@@ -61,7 +61,7 @@ class CustomItem extends StatelessWidget {
           Align(
             alignment: Alignment.topRight,
             child: Container(
-              color: AppTheme.primary,
+              color: AppTheme.kPrimary,
               margin: const EdgeInsets.only(right: 35),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),

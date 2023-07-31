@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/theme.dart';
 
 class DefaultButton extends StatelessWidget {
   final String? title;
@@ -29,22 +30,24 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return SizedBox(
+    return Container(
       height: height ?? MediaQuery.of(context).size.height *.06,
-      //height:  MediaQuery.of(context).size.height * 01,
       width:width?? MediaQuery.of(context).size.width *.8,
+      decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: <Color>[
+            AppTheme.kDarkBlue,
+              AppTheme.kLightBlue,
+            ],
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(radius))
+      ),
       child: TextButton(
         onPressed: () {
            function!();
         },
-
         style: TextButton.styleFrom(
           foregroundColor: textColor, padding: EdgeInsets.zero,
-          backgroundColor: color,
-          shape: RoundedRectangleBorder(
-            side:  BorderSide(color: borderColor ?? Colors.transparent), //,
-            borderRadius: BorderRadius.circular(radius),
-          ),
         ),
         child:
         isLoad!?
@@ -52,8 +55,6 @@ class DefaultButton extends StatelessWidget {
         Text(
           title!,
           style: TextStyle(
-         //   height:  MediaQuery.of(context).size.height*0.001,
-            //  fontWeight: FontWeight.bold,
             fontSize: font,),
         ),
       ),

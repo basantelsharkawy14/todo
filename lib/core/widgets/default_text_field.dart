@@ -57,7 +57,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
           onFocusChange: (focus) => setState(() {focus2 = focus;}),
           child: TextFormField(
             controller: widget.controller ?? controller2,
-            cursorColor: AppTheme.primary,
+            cursorColor: AppTheme.kPrimary,
             keyboardType:widget.number!=null? TextInputType.number: widget.email == true? TextInputType.emailAddress :TextInputType.text,
             maxLines: widget.description==true && widget.password==false?4:1,
             obscureText: widget.password==true&&!seePassword,
@@ -82,14 +82,14 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
                 borderRadius:
                 BorderRadius.all(Radius.circular(15)),
                 borderSide: BorderSide(
-                    width: 1, color: AppTheme.primary),
+                    width: 1, color: AppTheme.kPrimary),
               ),
 
 
               hintText: widget.label,
               hintStyle: TextStyle(color:focus2?
 
-                  AppTheme.primary:Colors.grey,
+                  AppTheme.kPrimary:Colors.grey,
 
                   fontWeight: FontWeight.bold,fontSize: 18),
         //      prefixIcon:

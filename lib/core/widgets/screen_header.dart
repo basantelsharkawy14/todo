@@ -37,7 +37,7 @@ final bool back;
           onTap: (){
             Navigator.pop(context);
           },
-            child:const Icon(Icons.arrow_forward_ios,color: AppTheme.primary,))
+            child:const Icon(Icons.arrow_forward_ios,color: AppTheme.kPrimary,))
         // Image.asset(
         //   "assets/images/left-arrow.png",
         //   height: size.width * .09,

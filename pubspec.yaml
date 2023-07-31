@@ -42,6 +42,10 @@ dependencies:
   shared_preferences:
   loading_indicator: ^3.1.0
   motion_toast: ^2.6.8
+  keyboard_attachable: ^2.1.0
+  get_it:
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:

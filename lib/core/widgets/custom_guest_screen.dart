@@ -26,7 +26,7 @@ class CustomGuestScreen extends StatelessWidget {
             style:Styles.textStyle20),
         const SizedBox(height: 24,),
 
-        DefaultButton(font:  size.height*0.02, radius: 18,title:  "تسجيل الدخول",textColor: AppTheme.white,height: size.height* .07,width: size.width * .8,color: AppTheme.primary,function: () {
+        DefaultButton(font:  size.height*0.02, radius: 18,title:  "تسجيل الدخول",textColor: AppTheme.white,height: size.height* .07,width: size.width * .8,color: AppTheme.kPrimary,function: () {
        //   Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginView()));
         }
         ),

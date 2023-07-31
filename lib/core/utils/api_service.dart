@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final _baseUrl = 'https://hader.today/api';
+  final _baseUrl = 'https://phpstack-561490-3524079.cloudwaysapps.com/api-start-point/public/api/';
   final Dio dio;
 
 
   ApiService(this.dio);
   static Map<String, String> apiHeaders = {
-    // "Content-Type": "application/json",
-    // "Accept": "application/json",
+     "Content-Type": "application/json",
+     "Accept": "application/json",
     // "X-Requested-With": "XMLHttpRequest",
   };
 
