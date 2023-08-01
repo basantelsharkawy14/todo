@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todo/core/service/notification_service.dart';
 import 'package:todo/core/utils/api_service.dart';
 import 'package:todo/features/login/data/repo/auth_repo_impl.dart';
 import 'package:todo/features/login/presentation/views/login_view.dart';
@@ -13,6 +14,9 @@ import 'core/utils/service_locator.dart';
 import 'features/login/presentation/manager/auth_cubit/auth_cubit.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService().init(); //
+  await NotificationService().requestIOSPermissions(); //
   setupServiceLocator();
   await Hive.initFlutter();
 
