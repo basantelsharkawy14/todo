@@ -34,10 +34,10 @@ class DefaultButton extends StatelessWidget {
       height: height ?? MediaQuery.of(context).size.height *.06,
       width:width?? MediaQuery.of(context).size.width *.8,
       decoration: BoxDecoration(
-          gradient: const LinearGradient(
+          gradient:  LinearGradient(
             colors: <Color>[
-            AppTheme.kDarkBlue,
-              AppTheme.kLightBlue,
+            color ??AppTheme.kDarkBlue,
+            color??  AppTheme.kLightBlue,
             ],
           ),
           borderRadius: BorderRadius.all(Radius.circular(radius))

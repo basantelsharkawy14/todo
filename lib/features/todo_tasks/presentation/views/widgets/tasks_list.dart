@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/features/todo_tasks/data/models/todo_model.dart';
+import 'package:todo/features/todo_tasks/presentation/manager/notes_cubit/notes_cubit.dart';
 import 'package:todo/features/todo_tasks/presentation/views/widgets/task_item.dart';
 
 class TasksList extends StatelessWidget {
@@ -6,13 +9,17 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ListView.builder(
+    return
+      BlocBuilder<NotesCubit, NotesState>(
+          builder: (context, state) {
+            List<TodoModel> notes = BlocProvider.of<NotesCubit>(context).notesFiltered!;
+  return    ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         padding:const EdgeInsets.symmetric(horizontal: 20),
-        itemCount: 3,
+        itemCount: notes.length,
         itemBuilder: (context, index) =>
-          const  TaskItem()
-    );
+            TaskItem(note: notes[index],)
+    );});
   }
 }

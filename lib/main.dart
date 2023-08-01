@@ -4,8 +4,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo/core/utils/api_service.dart';
 import 'package:todo/features/login/data/repo/auth_repo_impl.dart';
 import 'package:todo/features/login/presentation/views/login_view.dart';
+import 'package:todo/features/todo_tasks/data/models/todo_model.dart';
+import 'package:todo/features/todo_tasks/presentation/manager/notes_cubit/notes_cubit.dart';
 import 'package:todo/features/todo_tasks/presentation/views/todo_view.dart';
 
+import 'constants.dart';
 import 'core/utils/service_locator.dart';
 import 'features/login/presentation/manager/auth_cubit/auth_cubit.dart';
 
@@ -14,8 +17,8 @@ void main() async{
   await Hive.initFlutter();
 
  // Bloc.observer = SimpleBlocObserver();
-//  Hive.registerAdapter(NoteModelAdapter());
- // await Hive.openBox<NoteModel>(kNotesBox);
+  Hive.registerAdapter(TodoModelAdapter());
+  await Hive.openBox<TodoModel>(kTodoBox);
   await Hive.openBox("userBox");
   runApp(const MyApp());
 }
@@ -35,6 +38,9 @@ class MyApp extends StatelessWidget {
               )
           ),
         ),
+        BlocProvider(
+          create: (context) => NotesCubit()..fetchAllNotes()
+        )
         ],
       child: MaterialApp(
         title: 'Flutter Demo',

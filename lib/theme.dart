@@ -16,11 +16,11 @@ class AppTheme {
 
 
   static const Color kLightBlue = Color(0xFF00FFFF);
-  static const Color kLightYellow2 = Color(0xFFFFE4C7);
-  static const Color kDarkBlue = Color(0xFF0D47A1);
+  static const Color kLightBlack= Color(0xFF181743);
+  static const Color kDarkBlue = Color(0xFF254DDE);
   static const Color kPalePink = Color(0xFFFED4D6);
-  static const Color kLightGreen = Color(0xFFD9E6DC);
-  static const Color kLavender = Color(0xFFD5E4FE);
+  static const Color kBabyBlue = Color(0xFFCAEBFE);
+  static const Color kGray = Color(0xFF181743);
 
 
 //  static const Color primary = contentColorCyan;

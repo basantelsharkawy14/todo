@@ -122,7 +122,6 @@ class LoginViewBody extends StatelessWidget {
                             isLoad: state is AuthLoading,
                             height: 60,
                             width: size.width ,
-                            color: AppTheme.kPrimary,
                             font: size.height * 0.022,
                             radius: 35,
                             textColor: AppTheme.white,
