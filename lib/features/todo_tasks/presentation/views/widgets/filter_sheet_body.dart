@@ -18,7 +18,8 @@ class FilterSheetBody extends StatefulWidget {
 
 class _FilterSheetBodyState extends State<FilterSheetBody> {
   String? dateSelected;
-
+  List<String> statusList =['Pending', 'Complete', 'Cancel'];
+  String ?status ;
   setDate ({required DateTime pickedDate}){
     if (pickedDate.toString() != dateSelected.toString()) {
       dateSelected =  DateFormat('dd-MMMM-yyyy').format(pickedDate).toString();
@@ -29,6 +30,7 @@ class _FilterSheetBodyState extends State<FilterSheetBody> {
 
     });
   }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -60,7 +62,34 @@ class _FilterSheetBodyState extends State<FilterSheetBody> {
                 }),
             const SizedBox(height:30 ,),
 
+            Text('Status', style: Styles.textStyle14.copyWith(color: AppTheme.kLightBlack)),
 
+            SizedBox(
+              //   width: size.width,
+              child: DropdownButtonFormField(
+                hint: Text("Select status",style: Styles.textStyle12,),
+                decoration: const InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 2),
+                  ),
+              ),
+                value: status,
+                items:  statusList.map((value) {
+                return DropdownMenuItem(
+                  value: value,
+                  child: Text(value,style: Styles.textStyle12,),
+                );
+              }).toList(), onChanged: (newValue) {
+                setState(() {
+                  status = newValue!;
+                  BlocProvider.of<NotesCubit>(context).statusFilter(status!);
+                  Navigator.pop(context);
+                });
+              },
+              ) ),
           ],
         ),
       ),

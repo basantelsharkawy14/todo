@@ -45,7 +45,6 @@ class _TodoTextFieldState extends State<TodoTextField> {
 
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.white,
         borderRadius: BorderRadius.circular(6),
       ),
       child: FocusScope(

@@ -18,16 +18,6 @@ class EditNoteSheet extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return
-      // BlocConsumer<AddNoteCubit, AddNoteState>(
-      //     listener: (context, state) {
-      //       if (state is AddNoteFailure) {}
-      //
-      //       if (state is AddNoteSuccess) {
-      //         BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-      //         Navigator.pop(context);
-      //       }
-      //     },
-      //     builder: (context, state) =>
               Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -40,7 +30,6 @@ class EditNoteSheet extends StatelessWidget {
                   ),
                 ),
                 child:   EditNoteBody(note: note),
-          //    )
     );
   }
 }

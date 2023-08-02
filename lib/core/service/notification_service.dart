@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:rxdart/rxdart.dart';
+
 class NotificationService {
   static final NotificationService _notificationService =
   NotificationService._internal();
@@ -12,6 +14,7 @@ class NotificationService {
 
   NotificationService._internal();
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  static final onNotifications = BehaviorSubject<String?>();
 
   Future<void> init() async {
 
@@ -27,6 +30,11 @@ class NotificationService {
       requestAlertPermission: false,
     );
 
+    final details = await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+    if (details != null && details.didNotificationLaunchApp) {
+      onNotifications.add(details.payload);
+    }
+
     //InitializationSettings for initializing settings for both platforms (Android & iOS)
     final InitializationSettings initializationSettings =
     InitializationSettings(
@@ -35,7 +43,9 @@ class NotificationService {
     tz.initializeTimeZones();
     await flutterLocalNotificationsPlugin.initialize(
         initializationSettings,
-       // onSelectNotification: selectNotification
+          onSelectNotification: (payload) async {
+      onNotifications.add(payload);
+    },
     );
   }
 
@@ -59,12 +69,12 @@ class NotificationService {
 
 Future<void> scheduleNotification(int id , String title ,String body, tz.TZDateTime scheduleTime) async {
     var scheduleNotificationDateTime = DateTime.now().add(Duration(seconds: 5));
-    var androidChannelSpecifics = AndroidNotificationDetails(
+    var androidChannelSpecifics = const AndroidNotificationDetails(
       'CHANNEL_ID 1',
       'CHANNEL_NAME 1',
       enableLights: true,
-      color: const Color.fromARGB(255, 255, 0, 0),
-      ledColor: const Color.fromARGB(255, 255, 0, 0),
+      color: Color.fromARGB(255, 255, 0, 0),
+      ledColor: Color.fromARGB(255, 255, 0, 0),
       ledOnMs: 1000,
       ledOffMs: 500,
       importance: Importance.max,
@@ -82,10 +92,13 @@ Future<void> scheduleNotification(int id , String title ,String body, tz.TZDateT
       iOS: iosDetail,
       android: androidChannelSpecifics,
     );
+
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,
       body,
+     // tz.TZDateTime.from(dateTime, location);
       scheduleTime,
       noticeDetail,
       uiLocalNotificationDateInterpretation:

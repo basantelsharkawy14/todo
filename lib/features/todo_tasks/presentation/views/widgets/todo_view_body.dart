@@ -40,6 +40,7 @@ class TodoViewBody extends StatelessWidget {
                     GestureDetector(
                       onTap: (){
                         showModalSideSheet(
+                          barrierDismissible: true,
                             width: size.width * .85,
                             context: context,
                             ignoreAppBar: true,

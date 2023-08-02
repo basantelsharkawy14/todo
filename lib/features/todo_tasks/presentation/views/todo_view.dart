@@ -19,7 +19,8 @@ class TodoView extends StatelessWidget {
      floatingActionButton: FloatingActionButton(
         onPressed: (){
           showModalSideSheet(
-            width: size.width * .85,
+              barrierDismissible:true,
+              width: size.width * .85,
               context: context,
               ignoreAppBar: true,
               body: BlocProvider(
@@ -27,7 +28,6 @@ class TodoView extends StatelessWidget {
                   child: const AddNoteSheet())
           );
        },
-        tooltip: 'Increment',
         child: Container(
             height: 75,
             width: 75,

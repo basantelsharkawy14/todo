@@ -8,7 +8,7 @@ import 'package:todo/core/widgets/default_button.dart';
 import 'package:todo/features/todo_tasks/data/models/todo_model.dart';
 import 'package:todo/features/todo_tasks/presentation/manager/notes_cubit/notes_cubit.dart';
 import 'package:todo/features/todo_tasks/presentation/views/widgets/custom_templet.dart';
-import 'package:todo/features/todo_tasks/presentation/views/widgets/default_text_field.dart';
+import 'package:todo/features/todo_tasks/presentation/views/widgets/todo_text_field.dart';
 import 'package:todo/features/todo_tasks/presentation/views/widgets/edit_note_color_list.dart';
 import 'package:todo/theme.dart';
 
@@ -25,9 +25,10 @@ class EditNoteBody extends StatefulWidget {
 class _EditNoteBodyState extends State<EditNoteBody> {
 
   TextEditingController descriptionController = TextEditingController();
-  String? dateSelected;
+  DateTime? dateSelected;
   String ? selectedTime ;
-
+  List<String> statusList =['Pending', 'Complete', 'Cancel'];
+  String ?status ;
   setTime ({required TimeOfDay pickedTime}){
     if (pickedTime.toString() != selectedTime.toString()) {
       DateTime dateTime = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, pickedTime.hour, pickedTime.minute);
@@ -38,7 +39,7 @@ class _EditNoteBodyState extends State<EditNoteBody> {
   }
   setDate ({required DateTime pickedDate}){
     if (pickedDate.toString() != dateSelected.toString()) {
-      dateSelected =  DateFormat('dd-MMMM-yyyy').format(pickedDate).toString();
+      dateSelected =  pickedDate;
     }
     setState(() {
 
@@ -56,30 +57,32 @@ class _EditNoteBodyState extends State<EditNoteBody> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('NEW TASK', style: Styles.textStyle20),
-            const SizedBox(height:30 ,),
+            const SizedBox(height:20 ,),
 
             Text('Color', style: Styles.textStyle14.copyWith(color: AppTheme.kLightBlack)),
             EditNoteColorsList(note: widget.note),
-            const SizedBox(height:30 ,),
+            const SizedBox(height:20 ,),
 
             Text('Description', style: Styles.textStyle14.copyWith(color: AppTheme.kLightBlack)),
-            const SizedBox(height:10 ,),
+            const SizedBox(height:20 ,),
 
             TodoTextField(
                 controller: descriptionController,
                 description: true,
                 label: widget.note.description ??"enter your note",
                 icon: Icons.security),
-            const SizedBox(height:30 ,),
+            const SizedBox(height:20 ,),
 
             Text('Date', style: Styles.textStyle14.copyWith(color: AppTheme.kLightBlack)),
             CustomItem(
-                containerTitle:  dateSelected ?? widget.note.date,
+                containerTitle:
+                dateSelected != null? DateFormat('dd-MMMM-yyyy').format(dateSelected!).toString():
+                DateFormat('dd-MMMM-yyyy').format(DateTime.parse(widget.note.date)).toString(),
                 function: () async {
                   final DateTime? picked = await pickDate(context);
                   setDate(pickedDate: picked!);
                 }),
-            const SizedBox(height:30 ,),
+            const SizedBox(height:20 ,),
 
             Text('Time', style: Styles.textStyle14.copyWith(color: AppTheme.kLightBlack)),
 
@@ -92,9 +95,37 @@ class _EditNoteBodyState extends State<EditNoteBody> {
                     setTime(pickedTime: pickedTime!);
                   }
                 }),
-            // BlocBuilder<AddNoteCubit, AddNoteState>(
-            //     builder: (context, state) =>
-                    Expanded(
+            const SizedBox(height:20 ,),
+
+            Text('Status', style: Styles.textStyle14.copyWith(color: AppTheme.kLightBlack)),
+
+            SizedBox(
+              //   width: size.width,
+              child: DropdownButtonFormField(
+                decoration: const InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 2),
+                  ),
+                ),
+                items: statusList.map((value) {
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Text(value,style: Styles.textStyle12,),
+                  );
+                }).toList(),
+                value: status ?? widget.note.status,
+                onChanged: (newValue) {
+                  setState(() {
+                    status = newValue!;
+                  });
+                },
+              ),
+            ),
+
+            Expanded(
                       child: Align(
                         alignment: Alignment.bottomLeft,
                         child: Row(
@@ -119,8 +150,9 @@ class _EditNoteBodyState extends State<EditNoteBody> {
                             DefaultButton(
                               function: () {
                                 widget.note.description = descriptionController.text ==""? widget.note.description:descriptionController.text;
-                                widget.note.date = dateSelected ?? widget.note.date;
+                                widget.note.date = dateSelected!= null ? dateSelected.toString() : widget.note.date;
                                 widget.note.time = selectedTime ?? widget.note.time;
+                                widget.note.status = status ?? widget.note.status;
                                 widget.note.save();
                                 BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                                 Navigator.pop(context);
@@ -136,7 +168,6 @@ class _EditNoteBodyState extends State<EditNoteBody> {
                         ),
                       ),
                     ),
-            //),
             const SizedBox(height:20 ,),
 
           ],

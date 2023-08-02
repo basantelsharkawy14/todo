@@ -44,13 +44,8 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
   Widget build(BuildContext context) {
 
     return Container(
-   //   width: width*0.8,
-//margin: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-        color: AppTheme.background,
         borderRadius: BorderRadius.circular(15),
-      //  border: Border.all(color: Colors.grey.shade200)
-
       ),
       child: FocusScope(
         child: Focus(
@@ -61,7 +56,6 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
             keyboardType:widget.number!=null? TextInputType.number: widget.email == true? TextInputType.emailAddress :TextInputType.text,
             maxLines: widget.description==true && widget.password==false?4:1,
             obscureText: widget.password==true&&!seePassword,
-          //  minLines: widget.maxLines ??1,
             decoration: InputDecoration(
                 fillColor: AppTheme.background,
                 filled: true,

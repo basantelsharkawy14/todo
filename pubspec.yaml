@@ -49,6 +49,8 @@ dependencies:
   modal_side_sheet: ^0.0.1
   intl:
   flutter_local_notifications: ^9.5.3+1
+  rxdart: ^0.27.7
+  skeletons:
 
 
 dev_dependencies:
@@ -92,7 +94,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+   - family: Lato
+     fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+   - family: Baloo
+     fonts:
+        - asset: assets/fonts/Baloo-Regular.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

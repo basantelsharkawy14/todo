@@ -6,6 +6,7 @@ import 'package:todo/core/utils/api_service.dart';
 import 'package:todo/features/login/data/repo/auth_repo_impl.dart';
 import 'package:todo/features/login/presentation/views/login_view.dart';
 import 'package:todo/features/todo_tasks/data/models/todo_model.dart';
+import 'package:todo/features/todo_tasks/data/repo/todo_repo_impl.dart';
 import 'package:todo/features/todo_tasks/presentation/manager/notes_cubit/notes_cubit.dart';
 import 'package:todo/features/todo_tasks/presentation/views/todo_view.dart';
 
@@ -20,7 +21,6 @@ void main() async{
   setupServiceLocator();
   await Hive.initFlutter();
 
- // Bloc.observer = SimpleBlocObserver();
   Hive.registerAdapter(TodoModelAdapter());
   await Hive.openBox<TodoModel>(kTodoBox);
   await Hive.openBox("userBox");
@@ -28,6 +28,7 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -43,12 +44,17 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => NotesCubit()..fetchAllNotes()
+          create: (context) => NotesCubit(
+            TodoRepoImpl(
+              getIt.get<ApiService>(),
+            )
+          )
         )
         ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          fontFamily: 'Lato',
           // This is the theme of your application.
           //
           // TRY THIS: Try running your application with "flutter run". You'll see
@@ -67,6 +73,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
+        debugShowCheckedModeBanner: false,
         home:  Hive.box('userBox').get("token") == null?
         const LoginView():
             const TodoView()

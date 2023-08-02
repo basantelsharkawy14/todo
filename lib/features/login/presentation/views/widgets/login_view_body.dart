@@ -66,11 +66,11 @@ class LoginViewBody extends StatelessWidget {
                               BlocProvider.of<AuthCubit>(context).emailController,
                           label: 'Enter your email',
                           validator: (value) {
-                            if (value!.length < 6) {
-                              return 'wrong email';
-                            }
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Field Required';
+                            }if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                .hasMatch(value)){
+                              return 'Invalid email';
                             }
                             return null;
                           },
