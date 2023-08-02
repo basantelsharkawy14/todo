@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modal_side_sheet/modal_side_sheet.dart';
 import 'package:todo/core/utils/styles.dart';
-import 'package:todo/features/todo_tasks/presentation/views/widgets/filter_side_sheet.dart';
+import 'package:todo/features/todo_tasks/presentation/views/filtter_view.dart';
 import 'package:todo/features/todo_tasks/presentation/views/widgets/tasks_list.dart';
 import 'package:todo/theme.dart';
 
@@ -14,7 +14,6 @@ class TodoViewBody extends StatelessWidget {
 
     return Container(
        height: size.height,
-     // width: size.width,
       decoration:  BoxDecoration(
           gradient:  LinearGradient(
             colors: <Color>[

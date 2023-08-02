@@ -106,6 +106,7 @@ class LoginViewBody extends StatelessWidget {
                         Center(
                           child: DefaultButton(
                             function: () {
+                              if( state is! AuthLoading){
                               if (!BlocProvider.of<AuthCubit>(context)
                                   .formKeyLogin
                                   .currentState!
@@ -118,7 +119,7 @@ class LoginViewBody extends StatelessWidget {
                                   .save();
 
                               BlocProvider.of<AuthCubit>(context).login();
-                            },
+                            }},
                             isLoad: state is AuthLoading,
                             height: 60,
                             width: size.width ,

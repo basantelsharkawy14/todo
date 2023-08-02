@@ -65,7 +65,6 @@ class _FilterSheetBodyState extends State<FilterSheetBody> {
             Text('Status', style: Styles.textStyle14.copyWith(color: AppTheme.kLightBlack)),
 
             SizedBox(
-              //   width: size.width,
               child: DropdownButtonFormField(
                 hint: Text("Select status",style: Styles.textStyle12,),
                 decoration: const InputDecoration(
@@ -73,6 +72,9 @@ class _FilterSheetBodyState extends State<FilterSheetBody> {
                     borderSide: BorderSide(color: Colors.grey),
                   ),
                   border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 2),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey, width: 2),
                   ),
               ),

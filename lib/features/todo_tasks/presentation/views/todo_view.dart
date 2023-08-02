@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_side_sheet/modal_side_sheet.dart';
 import 'package:todo/features/todo_tasks/presentation/manager/add_note_cubit/add_note_cubit.dart';
-import 'package:todo/features/todo_tasks/presentation/views/widgets/add_note_sheet.dart';
+import 'package:todo/features/todo_tasks/presentation/views/add_note_view.dart';
 import 'package:todo/features/todo_tasks/presentation/views/widgets/todo_view_body.dart';
 import 'package:todo/theme.dart';
 

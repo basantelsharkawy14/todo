@@ -122,6 +122,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     border: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey, width: 2),
                     ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 2),
+                    ),
                   ),
                   items: statusList.map((value) {
                     return DropdownMenuItem(

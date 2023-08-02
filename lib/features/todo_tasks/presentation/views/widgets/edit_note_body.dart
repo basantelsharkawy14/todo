@@ -109,6 +109,9 @@ class _EditNoteBodyState extends State<EditNoteBody> {
                   border: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey, width: 2),
                   ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 2),
+                  ),
                 ),
                 items: statusList.map((value) {
                   return DropdownMenuItem(

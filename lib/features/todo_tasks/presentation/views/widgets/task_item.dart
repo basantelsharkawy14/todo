@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:modal_side_sheet/modal_side_sheet.dart';
 import 'package:todo/core/utils/styles.dart';
 import 'package:todo/features/todo_tasks/data/models/todo_model.dart';
-import 'package:todo/features/todo_tasks/presentation/views/widgets/edit_note_sheet.dart';
+import 'package:todo/features/todo_tasks/presentation/views/edit_note_view.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({Key? key,required this.note}) : super(key: key);
@@ -37,12 +37,20 @@ final TodoModel note;
               radius: 12,
               backgroundColor: Color(note.color),
             ),
-            const SizedBox(width: 5,),
-            SizedBox(
-              width: size.width * .44,
-              child:  Text(note.description.toString(),
-                  overflow: TextOverflow.ellipsis,
-                  style: Styles.textStyle14),
+            const SizedBox(width: 3,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: size.width * .5,
+                  child:  Text(note.description.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      style: Styles.textStyle14),
+                ),
+        Text(note.status.toString(),
+            style: Styles.textStyle12.copyWith(color: Colors.grey)),
+              ],
             ),
 
              Column(
