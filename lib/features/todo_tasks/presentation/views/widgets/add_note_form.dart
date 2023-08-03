@@ -143,7 +143,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
 
               BlocBuilder<AddNoteCubit, AddNoteState>(
-    builder: (context, state) =>
+                 builder: (context, state) =>
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomLeft,

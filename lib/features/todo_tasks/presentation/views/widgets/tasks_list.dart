@@ -48,7 +48,8 @@ class TasksList extends StatelessWidget {
         itemCount: notes.length,
         itemBuilder: (context, index) =>
             TaskItem(note: notes[index],)
-    );});
+    );}
+    );
   }
 }
 

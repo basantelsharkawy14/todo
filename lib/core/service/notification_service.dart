@@ -68,10 +68,9 @@ class NotificationService {
 
 
 Future<void> scheduleNotification(int id , String title ,String body, tz.TZDateTime scheduleTime) async {
-    var scheduleNotificationDateTime = DateTime.now().add(Duration(seconds: 5));
     var androidChannelSpecifics = const AndroidNotificationDetails(
-      'CHANNEL_ID 1',
-      'CHANNEL_NAME 1',
+      'reminder_1',
+      'reminder',
       enableLights: true,
       color: Color.fromARGB(255, 255, 0, 0),
       ledColor: Color.fromARGB(255, 255, 0, 0),
@@ -83,9 +82,6 @@ Future<void> scheduleNotification(int id , String title ,String body, tz.TZDateT
       timeoutAfter: 5000,
       styleInformation: DefaultStyleInformation(true, true),
     );
-    // var iosChannelSpecifics = IOSNotificationDetails(
-    //   sound: 'my_sound.aiff',
-    // );
     final iosDetail = IOSNotificationDetails();
 
     final noticeDetail = NotificationDetails(
@@ -98,7 +94,6 @@ Future<void> scheduleNotification(int id , String title ,String body, tz.TZDateT
       id,
       title,
       body,
-     // tz.TZDateTime.from(dateTime, location);
       scheduleTime,
       noticeDetail,
       uiLocalNotificationDateInterpretation:
