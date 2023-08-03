@@ -92,7 +92,6 @@ fireNotification (){
     emit(NotesLoading());
     var result = await todoRepo.refreshToken();
     result.fold((failure) {
-      print(failure.errMessage);
       debugPrint(failure.errMessage);
       emit(RefreshTokenFailure(
         error: failure.errMessage,

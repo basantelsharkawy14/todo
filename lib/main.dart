@@ -10,6 +10,7 @@ import 'package:todo/features/todo_tasks/data/repo/todo_repo_impl.dart';
 import 'package:todo/features/todo_tasks/presentation/manager/notes_cubit/notes_cubit.dart';
 import 'package:todo/features/todo_tasks/presentation/views/todo_view.dart';
 
+
 import 'constants.dart';
 import 'core/utils/service_locator.dart';
 import 'features/login/presentation/manager/auth_cubit/auth_cubit.dart';
@@ -26,6 +27,9 @@ void main() async{
   await Hive.openBox("userBox");
   runApp(const MyApp());
 }
+
+
+
 
 class MyApp extends StatelessWidget {
 
